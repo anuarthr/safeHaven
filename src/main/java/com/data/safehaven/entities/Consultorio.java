@@ -11,7 +11,6 @@ public class Consultorio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
     private String nombre;
     private String ubicacion;
@@ -21,11 +20,6 @@ public class Consultorio {
     private Time horarioDeCierre;
     private Boolean activo;
 
-    @ManyToOne
-    @JoinColumn(name = "idClinica")
-    private Clinica clinica;
-
     @OneToMany(mappedBy = "consultorio")
     private List<Cita> citas;
-
 }

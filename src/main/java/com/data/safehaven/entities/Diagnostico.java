@@ -8,11 +8,9 @@ import java.util.List;
 @Data
 @Entity
 public class Diagnostico {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String descripcion;
 
     @Temporal(TemporalType.DATE)

@@ -3,6 +3,8 @@ package com.data.safehaven.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
 public class Usuario {
@@ -15,11 +17,22 @@ public class Usuario {
     private String apellido;
     private String correoElectronico;
     private String password;
+    private Integer edad;
+    private Integer telefono;
 
-    @OneToOne(mappedBy = "usuario")
+    @Temporal(TemporalType.DATE)
+    private Date fechaDeNacimiento;
+
+    @OneToOne(mappedBy = "idUsuario")
     private Administrador administrador;
 
-    @OneToOne(mappedBy = "usuario")
+    @OneToOne(mappedBy = "idUsuario")
     private Paciente paciente;
 
+    @OneToOne(mappedBy = "idUsuario")
+    private Psicologo psicologo;
+
+    @ManyToOne
+    @JoinColumn(name = "idRol")
+    private Rol rol;
 }

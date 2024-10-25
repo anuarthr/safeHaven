@@ -26,6 +26,4 @@ public class Tratamiento {
     @ManyToOne
     @JoinColumn(name = "idHistorialClinico")
     private HistorialClinico historialClinico;
-
 }
-

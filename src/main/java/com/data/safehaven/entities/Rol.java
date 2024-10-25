@@ -3,16 +3,17 @@ package com.data.safehaven.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
-public class Administrador {
-
+public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String cargo;
+    private String nombre;
+    private String descripcion;
 
-    @OneToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
+    @OneToMany(mappedBy = "idRol")
+    private List<Usuario> usuarios;
 }

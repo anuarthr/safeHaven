@@ -7,16 +7,13 @@ import java.util.List;
 
 @Data
 @Entity
-public class Servicio {
-
+public class TipoEstadoFactura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nombre;
     private String descripcion;
-    private double precio;
 
-    @OneToMany(mappedBy = "idServicio")
-    private List<ServicioCita> servicioCitas;
+    @OneToMany(mappedBy = "idTipoEstadoFactura")
+    private List<EstadoFactura> estadoFactura;
 }

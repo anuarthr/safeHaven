@@ -18,7 +18,10 @@ public class HistorialClinico {
 
     private String comentarios;
 
-    @OneToMany(mappedBy = "historialClinico")
-    private List<Paciente> pacientes;
+    @OneToMany(mappedBy = "idHistorialClinico")
+    private List<Tratamiento> tratamiento;
 
+    @ManyToOne
+    @JoinColumn(name = "idPaciente")
+    private Paciente paciente;
 }

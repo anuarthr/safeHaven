@@ -12,27 +12,27 @@ public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private double monto;
+    private String insertBy;
+    private String updateBy;
 
     @Temporal(TemporalType.DATE)
     private Date fechaDePago;
 
-    private String estado;
+    @Temporal(TemporalType.DATE)
+    private Date insertAt;
+
+    @Temporal(TemporalType.DATE)
+    private Date updateAt;
 
     @ManyToOne
     @JoinColumn(name = "idCita")
     private Cita cita;
 
     @ManyToOne
-    @JoinColumn(name = "idClinica")
-    private Clinica clinica;
-
-    @ManyToOne
     @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
-    @OneToMany
-    private List<Servicio> servicios;
-
+    @OneToMany(mappedBy = "idFactura")
+    private List<EstadoFactura> estadoFactura;
 }

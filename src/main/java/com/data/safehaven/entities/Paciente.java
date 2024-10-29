@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Paciente {
+public class Paciente extends Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

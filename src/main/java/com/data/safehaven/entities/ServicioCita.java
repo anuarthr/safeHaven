@@ -1,14 +1,18 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ServicioCita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idServicioCita;
+    private Long idServicioCita;
 
     @ManyToOne
     @JoinColumn(name = "idServicio")

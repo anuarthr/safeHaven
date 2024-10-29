@@ -1,20 +1,30 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+    @Column(nullable = true)
     private String motivo;
-    private Integer duracion;
+    @Column(nullable = false)
+    private LocalTime duracion;
+
     private String tipoCita;
+
     private String insertBy;
     private String updateBy;
 
@@ -22,7 +32,7 @@ public class Cita {
     private Date fecha;
 
     @Temporal(TemporalType.TIME)
-    private Date hora;
+    private LocalTime hora;
 
     @Temporal(TemporalType.DATE)
     private Date insertAt;
@@ -31,24 +41,22 @@ public class Cita {
     private Date updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "idPaciente")
+    @JoinColumn(nullable = false, name = "pacienteId")
     private Paciente paciente;
-
     @ManyToOne
-    @JoinColumn(name = "idPsicologo")
+    @JoinColumn(nullable = false, name = "psicologoId")
     private Psicologo psicologo;
-
     @ManyToOne
-    @JoinColumn(name = "idConsultorio")
+    @JoinColumn(nullable = false, name = "consultorioId")
     private Consultorio consultorio;
 
-    @OneToMany(mappedBy = "idCita")
-    List<Factura> factura;
+    @OneToMany(mappedBy = "cita", fetch = FetchType.LAZY)
+    private List<Factura> factura;
 
-    @OneToMany(mappedBy = "idCita")
-    List<ServicioCita> servicioDeCita;
+    @OneToMany(mappedBy = "cita", fetch = FetchType.LAZY)
+    private List<ServicioCita> servicioDeCita;
 
-    @OneToMany(mappedBy = "idCita")
-    List<EstadoCita> estadoCita;
+    @OneToMany(mappedBy = "cita", fetch = FetchType.LAZY)
+    private List<EstadoCita> estadoCita;
 }
 

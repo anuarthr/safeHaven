@@ -1,17 +1,22 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String condicionEspecial;
 
     @Temporal(TemporalType.DATE)
@@ -21,7 +26,7 @@ public class Paciente {
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "idPaciente")
+    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
     private List<HistorialClinico> historialClinico;
 
     @OneToMany(mappedBy = "idPaciente")

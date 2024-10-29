@@ -1,17 +1,20 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-public class Administrador {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Administrador extends Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String cargo;
-
     @OneToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;

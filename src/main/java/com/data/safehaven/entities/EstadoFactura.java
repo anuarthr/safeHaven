@@ -1,16 +1,31 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class EstadoFactura {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idEstadoFactura;
+
+
+    @EmbeddedId
+    private EstadoDeFacturaId id;
+
+    @ManyToOne
+    @MapsId("facturaId")
+    @JoinColumn(name = "FACTURA_ID")
+    private Factura factura;
+
+    @ManyToOne
+    @MapsId("tipoDeEstadoFacturaId")
+    @JoinColumn(name = "TIPODEESTADOFACTURA_ID")
+    private TipoEstadoFactura tipoEstadoFactura;
 
     @Temporal(TemporalType.DATE)
     private Date fechaInicioEstado;
@@ -24,11 +39,5 @@ public class EstadoFactura {
     @Temporal(TemporalType.DATE)
     private Date fechaFinDeRegistroEstado;
 
-    @ManyToOne
-    @JoinColumn(name = "idFactura")
-    private Factura factura;
 
-    @ManyToOne
-    @JoinColumn(name = "idTipoEstadoFactura")
-    private TipoEstadoFactura tipoEstadoFactura;
 }

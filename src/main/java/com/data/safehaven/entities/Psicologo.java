@@ -1,17 +1,21 @@
 package com.data.safehaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Psicologo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String especialidad;
     private Integer añosDeExperiencia;
@@ -26,4 +30,5 @@ public class Psicologo {
 
     @OneToMany(mappedBy = "idPsicologo")
     private List<Cita> citas;
+
 }

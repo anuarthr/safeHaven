@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Psicologo {
+
+public class Psicologo extends Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +26,10 @@ public class Psicologo {
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "idPsicologo")
+    @OneToMany(mappedBy = "psicologo")
     private List<Tratamiento> tratamientos;
 
-    @OneToMany(mappedBy = "idPsicologo")
+    @OneToMany(mappedBy = "psicologo")
     private List<Cita> citas;
 
 }

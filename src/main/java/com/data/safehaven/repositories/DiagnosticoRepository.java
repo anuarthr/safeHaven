@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DiagnosticoRepository extends JpaRepository<Diagnostico, Long> {
 
-    List<Diagnostico> findDiagnosticoByIdPaciente(Long idPaciente);
-    List<Diagnostico> findDiagnosticoByPsicologo(Long idPsicologo);
+    List<Diagnostico> findDiagnosticoByPacienteId(Long idPaciente);
+    List<Diagnostico> findDiagnosticoByPsicologoId(Long idPsicologo);
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "facturas")
 public class Factura {
 
     @Id
@@ -37,6 +38,6 @@ public class Factura {
     @JoinColumn(name = "idPaciente")
     private Paciente paciente;
 
-    @OneToMany(mappedBy = "idFactura", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "factura", fetch = FetchType.LAZY)
     private List<EstadoFactura> estadoFactura;
 }

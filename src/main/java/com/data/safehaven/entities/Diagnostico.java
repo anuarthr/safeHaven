@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "diagnosticos")
 public class Diagnostico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

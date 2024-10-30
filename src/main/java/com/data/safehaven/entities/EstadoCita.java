@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "estadosCita")
 public class EstadoCita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "estadosFactura")
 public class EstadoFactura {
 
 

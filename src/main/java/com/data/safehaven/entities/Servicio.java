@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "servicios")
 public class Servicio {
 
     @Id
@@ -21,6 +22,6 @@ public class Servicio {
     private String descripcion;
     private double precio;
 
-    @OneToMany(mappedBy = "idServicio")
+    @OneToMany(mappedBy = "servicio")
     private List<ServicioCita> servicioCitas;
 }

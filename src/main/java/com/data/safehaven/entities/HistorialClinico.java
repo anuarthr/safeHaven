@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "historialesClinicos")
 public class HistorialClinico {
 
     @Id
@@ -23,7 +24,7 @@ public class HistorialClinico {
 
     private String comentarios;
 
-    @OneToMany(mappedBy = "idHistorialClinico", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "historialClinico", fetch = FetchType.LAZY)
     private List<Tratamiento> tratamiento;
 
     @ManyToOne

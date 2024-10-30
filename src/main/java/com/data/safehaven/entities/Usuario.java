@@ -11,6 +11,8 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -26,13 +28,13 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     private Date fechaDeNacimiento;
 
-    @OneToOne(mappedBy = "idUsuario")
+    @OneToOne(mappedBy = "usuario")
     private Administrador administrador;
 
-    @OneToOne(mappedBy = "idUsuario")
+    @OneToOne(mappedBy = "usuario")
     private Paciente paciente;
 
-    @OneToOne(mappedBy = "idUsuario")
+    @OneToOne(mappedBy = "usuario")
     private Psicologo psicologo;
 
     @ManyToOne

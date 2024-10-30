@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Paciente extends Usuario{
 
     @Id
@@ -26,12 +27,12 @@ public class Paciente extends Usuario{
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     private List<HistorialClinico> historialClinico;
 
-    @OneToMany(mappedBy = "idPaciente")
+    @OneToMany(mappedBy = "paciente")
     private List<Diagnostico> diagnostico;
 
-    @OneToMany(mappedBy = "idPaciente")
+    @OneToMany(mappedBy = "paciente")
     private List<Cita> cita;
 }

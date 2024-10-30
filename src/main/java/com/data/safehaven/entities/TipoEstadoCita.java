@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "tipoEstadoCitas")
 public class TipoEstadoCita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,6 @@ public class TipoEstadoCita {
     private String nombre;
     private String descripcion;
 
-    @OneToMany(mappedBy = "idTipoEstadoCita")
+    @OneToMany(mappedBy = "tipoEstadoCita")
     private List<EstadoCita> estadoCitas;
 }

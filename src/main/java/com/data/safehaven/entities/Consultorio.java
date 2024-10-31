@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class Consultorio {
     private Integer capacidad;
     private LocalTime horarioDeApertura;
     private LocalTime horarioDeCierre;
-    private Boolean activo;
+    private boolean activo;
 
     @OneToMany(mappedBy = "consultorio", fetch = FetchType.LAZY)
     private List<Cita> citas;

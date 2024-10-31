@@ -18,10 +18,11 @@ public class Paciente extends Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String condicionEspecial;
+    private String aseguradora;
+    private String estadoDeSalud;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaDeNacimiento;
+    private Date fechaDeRegistro;
 
     @OneToOne
     @JoinColumn(name = "idUsuario")

@@ -24,6 +24,7 @@ public class Usuario {
     private String password;
     private Integer edad;
     private Integer telefono;
+    private String sexo;
 
     @Temporal(TemporalType.DATE)
     private Date fechaDeNacimiento;

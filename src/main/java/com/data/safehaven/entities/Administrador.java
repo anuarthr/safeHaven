@@ -12,14 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "administradores")
 public class Administrador extends Usuario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Long id;
     @Column
     private String cargo;
 
-    @OneToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
 }

@@ -1,5 +1,7 @@
 package com.data.safehaven.services;
 
+
+import com.data.safehaven.dtos.PacienteDto;
 import com.data.safehaven.entities.Paciente;
 
 import java.util.List;
@@ -7,15 +9,15 @@ import java.util.Optional;
 
 public interface PacienteService {
 
-    List<Paciente> findAll();
+    List<PacienteDto> findAll();
 
-    Optional<Paciente> findById(long id);
+    Optional<PacienteDto> findById(long id);
 
-    Optional<Paciente> findByNombre(String nombre);
+    Optional<PacienteDto> findByNombre(String nombre);
 
-    Paciente savePaciente(Paciente paciente);
+    PacienteDto savePaciente(PacienteDto paciente);
 
     void deletePaciente(long id);
 
-    Optional<Paciente> updatePaciente(long id, Paciente paciente);
+    Optional<PacienteDto> updatePaciente(long id, PacienteDto paciente);
 }

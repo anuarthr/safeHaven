@@ -11,20 +11,12 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Psicologo extends Usuario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String especialidad;
     private Integer añosDeExperiencia;
     private String horarioDeAtencion;
-
-    @OneToOne
-    @JoinColumn(name = "idUsuario")
-    private Usuario usuario;
 
     @OneToMany(mappedBy = "psicologo")
     private List<Tratamiento> tratamientos;

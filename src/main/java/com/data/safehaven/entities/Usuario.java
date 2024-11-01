@@ -27,18 +27,14 @@ public class Usuario {
     private String sexo;
 
     @Temporal(TemporalType.DATE)
+
     private Date fechaDeNacimiento;
 
-    @OneToOne(mappedBy = "usuario")
-    private Administrador administrador;
 
-    @OneToOne(mappedBy = "usuario")
-    private Paciente paciente;
 
-    @OneToOne(mappedBy = "usuario")
-    private Psicologo psicologo;
-
-    @ManyToOne
-    @JoinColumn(name = "idRol")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRol", nullable = true)
     private Rol rol;
+
+
 }

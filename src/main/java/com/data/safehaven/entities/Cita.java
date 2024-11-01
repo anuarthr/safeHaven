@@ -19,9 +19,8 @@ public class Cita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = true)
     private String motivo;
-    @Column(nullable = false)
+
     private LocalTime duracion;
 
     private String tipoCita;

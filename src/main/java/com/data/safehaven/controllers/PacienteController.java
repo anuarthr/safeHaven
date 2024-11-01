@@ -1,5 +1,6 @@
 package com.data.safehaven.controllers;
 
+import com.data.safehaven.dtos.PacienteDto;
 import com.data.safehaven.entities.Paciente;
 import com.data.safehaven.services.PacienteService;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pacientes")
+@RequestMapping("/api/pacientes")
 public class PacienteController {
     private final PacienteService pacienteService;
 
@@ -20,24 +21,24 @@ public class PacienteController {
     }
 
     @GetMapping
-    ResponseEntity<List<Paciente>> obtenerPacientes() {
+    ResponseEntity<List<PacienteDto>> obtenerPacientes() {
         return ResponseEntity.ok(pacienteService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Paciente> obtenerPacienteById(@PathVariable("id") Long id) {
+    public ResponseEntity<PacienteDto> obtenerPacienteById(@PathVariable("id") Long id) {
         return pacienteService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente) {
+    public ResponseEntity<PacienteDto> crearPaciente(@RequestBody PacienteDto paciente) {
         return createPaciente(paciente);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Paciente> eliminarPaciente(@PathVariable("id") Long id) {
+    public ResponseEntity<PacienteDto> eliminarPaciente(@PathVariable("id") Long id) {
         return pacienteService.findById(id)
                 .map(p -> {
                     pacienteService.deletePaciente(id);
@@ -46,17 +47,17 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Paciente> actualizarPaciente(@PathVariable("id") Long id, @RequestBody Paciente paciente) {
-        Optional<Paciente> pacienteUpdate = pacienteService.updatePaciente(id, paciente);
+    public ResponseEntity<PacienteDto> actualizarPaciente(@PathVariable("id") Long id, @RequestBody PacienteDto paciente) {
+        Optional<PacienteDto> pacienteUpdate = pacienteService.updatePaciente(id, paciente);
         return pacienteUpdate
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> createPaciente(paciente));
     }
 
-    private ResponseEntity<Paciente> createPaciente(Paciente paciente) {
-        Paciente newPaciente = pacienteService.savePaciente(paciente);
+    private ResponseEntity<PacienteDto> createPaciente(PacienteDto paciente) {
+        PacienteDto newPaciente = pacienteService.savePaciente(paciente);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newPaciente.getId()).toUri();
+                .buildAndExpand(newPaciente.id()).toUri();
         return ResponseEntity.created(location).body(newPaciente);
     }
 }

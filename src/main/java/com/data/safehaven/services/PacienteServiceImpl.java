@@ -48,8 +48,6 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     public PacienteDto savePaciente(PacienteDto paciente) {
         Paciente pacienteEntity = pacienteMapper.toEntity(paciente, rolService);
-        Rol rol = rolRepository.findById(paciente.rol()).orElse(null);
-        pacienteEntity.setRol(rol);
         PacienteDto pacienteDTO = pacienteMapper.toDTO(pacienteRepository.save(pacienteEntity));
         return pacienteDTO;
     }

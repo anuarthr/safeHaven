@@ -16,6 +16,7 @@ public class RolService {
     private final RolRepository rolRepository;
     private final RolMapper rolMapper;
 
+
     public RolService(RolRepository rolRepository, RolMapper rolMapper) {
         this.rolRepository = rolRepository;
         this.rolMapper = rolMapper;

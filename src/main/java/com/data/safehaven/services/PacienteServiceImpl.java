@@ -4,11 +4,8 @@ package com.data.safehaven.services;
 import com.data.safehaven.dtos.PacienteDto;
 import com.data.safehaven.dtos.PacienteMapper;
 import com.data.safehaven.entities.Paciente;
-import com.data.safehaven.entities.Rol;
-import com.data.safehaven.entities.Usuario;
 import com.data.safehaven.repositories.PacienteRepository;
 import com.data.safehaven.repositories.RolRepository;
-import com.data.safehaven.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

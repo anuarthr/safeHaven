@@ -7,7 +7,7 @@ import java.util.Date;
 public record AdministradorDto(Long id,
                                String nombre,
                                String apellido,
-                               Rol rol,
+                               Long rol,
                                String correoElectronico,
                                String password,
                                Integer edad,

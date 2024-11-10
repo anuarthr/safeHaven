@@ -15,9 +15,13 @@ public interface PacienteService {
 
     Optional<PacienteDto> findByNombre(String nombre);
 
+    Optional<PacienteDto> findByCorreoElectronico(String correoElectronico);
+
     PacienteDto savePaciente(PacienteDto paciente);
 
     void deletePaciente(long id);
 
     Optional<PacienteDto> updatePaciente(long id, PacienteDto paciente);
+
+    boolean validatePassword(PacienteDto paciente, String password);
 }

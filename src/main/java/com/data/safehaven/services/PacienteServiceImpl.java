@@ -29,7 +29,7 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public List<PacienteDto> findAll() {
-        return pacienteRepository.findAll().stream().map(p -> pacienteMapper.toDTO(p)).collect(Collectors.toList());
+        return pacienteRepository.findAll().stream().map(pacienteMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -49,6 +49,15 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteDTO;
     }
 
+    @Override
+    public Optional<PacienteDto> findByCorreoElectronico(String correoElectronico) {
+        return pacienteRepository.findByCorreoElectronico(correoElectronico)
+                .map(pacienteMapper::toDTO);
+    }
+
+    public boolean validatePassword(PacienteDto paciente, String password) {
+        return paciente.password().equals(password);
+    }
 
     @Override
     public void deletePaciente(long id) {

@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/psicologos")
+@CrossOrigin("http://localhost:5173/")
 public class PsicologoController {
     private final PsicologoService psicologoService;
 

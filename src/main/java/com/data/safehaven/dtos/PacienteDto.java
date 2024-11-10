@@ -1,8 +1,5 @@
 package com.data.safehaven.dtos;
 
-import com.data.safehaven.entities.Paciente;
-import com.data.safehaven.entities.Rol;
-
 import java.util.Date;
 
 public record PacienteDto(Long id,

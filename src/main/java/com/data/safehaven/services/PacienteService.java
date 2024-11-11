@@ -13,6 +13,8 @@ public interface PacienteService {
 
     Optional<PacienteDto> findById(long id);
 
+    Optional<Paciente> findPacienteById(long id);
+
     Optional<PacienteDto> findByNombre(String nombre);
 
     Optional<PacienteDto> findByCorreoElectronico(String correoElectronico);

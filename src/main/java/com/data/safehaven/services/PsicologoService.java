@@ -35,6 +35,10 @@ public class PsicologoService {
         return psicologoRepository.findById(id).map(psicologoMapper::toDTO);
     }
 
+    public Optional<Psicologo> findPsicologoById(long id) {
+        return psicologoRepository.findById(id);
+    }
+
     public Optional<PsicologoDto> findByNombre(String nombre) {
         return psicologoRepository.findByNombre(nombre).map(psicologoMapper::toDTO);
     }

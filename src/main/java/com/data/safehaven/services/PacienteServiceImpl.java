@@ -39,6 +39,9 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteRepository.findById(id).map(pacienteMapper::toDTO);
     }
 
+    public Optional<Paciente> findPacienteById(long id) {
+        return pacienteRepository.findById(id);
+    }
     @Override
     public Optional<PacienteDto> findByNombre(String nombre) {
         return pacienteRepository.findByNombre(nombre).map(pacienteMapper::toDTO);

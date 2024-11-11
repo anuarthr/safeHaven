@@ -15,14 +15,17 @@ import java.util.stream.Collectors;
 public class CitaService {
     private final CitaRepository citaRepository;
     private final CitaMapper citaMapper;
-    private final RolRepository rolRepository;
-    private final RolService rolService;
+    private final PacienteService pacienteService;
+    private final PsicologoService psicologoService;
+    private final ConsultorioService consultorioService;
 
-    public CitaService(CitaRepository citaRepository, CitaMapper citaMapper, RolRepository rolRepository, RolService rolService) {
+
+    public CitaService(CitaRepository citaRepository, CitaMapper citaMapper, PacienteService pacienteService, PsicologoService psicologoService, ConsultorioService consultorioService) {
         this.citaRepository = citaRepository;
         this.citaMapper = citaMapper;
-        this.rolRepository = rolRepository;
-        this.rolService = rolService;
+        this.pacienteService = pacienteService;
+        this.psicologoService = psicologoService;
+        this.consultorioService = consultorioService;
     }
 
     public List<CitaDto> findAll() {
@@ -38,7 +41,7 @@ public class CitaService {
 //    }
 
     public CitaDto saveCita(CitaDto cita) {
-        Cita citaEntity = citaMapper.toEntity(cita);
+        Cita citaEntity = citaMapper.toEntity(cita, pacienteService, consultorioService, psicologoService);
         CitaDto citaDTO = citaMapper.toDTO(citaRepository.save(citaEntity));
         return citaDTO;
     }
@@ -49,7 +52,7 @@ public class CitaService {
 
     public Optional<CitaDto> updateCita(long id, CitaDto cita) {
         return citaRepository.findById(id).map(oldCita -> {
-            oldCita.setConsultorio(cita.consultorio());
+            oldCita.setConsultorio(consultorioService.findConsultorioById(cita.id()).orElse(null));
             oldCita.setFecha(cita.fecha());
             oldCita.setMotivo(cita.motivo());
             oldCita.setHora(cita.hora());

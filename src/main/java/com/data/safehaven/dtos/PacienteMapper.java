@@ -31,10 +31,6 @@ public interface PacienteMapper {
         }
         return rolService.findRoleById(id);
     }
-    @Named("fechaDeRegistro")
-    default Date SetFechaDeRegistro() {
-        return new Date();
-    }
 
 
 }

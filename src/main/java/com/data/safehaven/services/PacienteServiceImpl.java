@@ -66,18 +66,19 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public Optional<PacienteDto> updatePaciente(long id, PacienteDto paciente) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("El id proporcionado no es válido");
+        }
         return pacienteRepository.findById(id).map(oldPaciente -> {
             oldPaciente.setNombre(paciente.nombre());
             oldPaciente.setApellido(paciente.apellido());
-            oldPaciente.setRol(rolRepository.findById(paciente.rol()).orElse(null));
             oldPaciente.setCorreoElectronico(paciente.correoElectronico());
             oldPaciente.setPassword(paciente.password());
             oldPaciente.setEdad(paciente.edad());
             oldPaciente.setTelefono(paciente.telefono());
             oldPaciente.setSexo(paciente.sexo());
             oldPaciente.setFechaDeNacimiento(paciente.fechaDeNacimiento());
-            oldPaciente.setFechaDeRegistro(paciente.fechaDeRegistro());
-            oldPaciente.setAseguradora(oldPaciente.getAseguradora());
+            oldPaciente.setAseguradora(paciente.aseguradora());
             oldPaciente.setEstadoDeSalud(paciente.estadoDeSalud());
             return pacienteRepository.save(oldPaciente);
         }).map(pacienteMapper::toDTO);

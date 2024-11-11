@@ -23,7 +23,7 @@ public class Usuario {
     private String correoElectronico;
     private String password;
     private Integer edad;
-    private Integer telefono;
+    private Long telefono;
     private String sexo;
 
     @Temporal(TemporalType.DATE)

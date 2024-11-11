@@ -9,7 +9,7 @@ public record UsuarioDto(Long id,
                          String correoElectronico,
                          String password,
                          Integer edad,
-                         Integer telefono,
+                         Long telefono,
                          String sexo,
                          Date fechaDeNacimiento) {
 }

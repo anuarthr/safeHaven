@@ -6,8 +6,10 @@ import com.data.safehaven.dtos.PacienteMapper;
 import com.data.safehaven.entities.Paciente;
 import com.data.safehaven.repositories.PacienteRepository;
 import com.data.safehaven.repositories.RolRepository;
+import com.ejemplo.excepciones.EmailException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,6 +39,9 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteRepository.findById(id).map(pacienteMapper::toDTO);
     }
 
+    public Optional<Paciente> findPacienteById(long id) {
+        return pacienteRepository.findById(id);
+    }
     @Override
     public Optional<PacienteDto> findByNombre(String nombre) {
         return pacienteRepository.findByNombre(nombre).map(pacienteMapper::toDTO);
@@ -44,9 +49,13 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public PacienteDto savePaciente(PacienteDto paciente) {
+        Optional<Paciente> pacienteValidateEmail = pacienteRepository.findByCorreoElectronico(paciente.correoElectronico());
+        if (pacienteValidateEmail.isPresent()) {
+            throw new EmailException(paciente.correoElectronico());
+        }
         Paciente pacienteEntity = pacienteMapper.toEntity(paciente, rolService);
-        PacienteDto pacienteDTO = pacienteMapper.toDTO(pacienteRepository.save(pacienteEntity));
-        return pacienteDTO;
+        pacienteEntity.setFechaDeRegistro(new Date());
+        return pacienteMapper.toDTO(pacienteRepository.save(pacienteEntity));
     }
 
     @Override

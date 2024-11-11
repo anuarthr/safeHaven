@@ -16,7 +16,7 @@ public record CitaDto(Long id,
                       String updateBy,
                       Date fecha,
                       LocalTime hora,
-                      Paciente paciente,
-                      Psicologo psicologo,
-                      Consultorio consultorio) {
+                      Long paciente,
+                      Long psicologo,
+                      Long consultorio) {
 }

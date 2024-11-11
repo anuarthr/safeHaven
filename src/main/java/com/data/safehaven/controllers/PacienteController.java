@@ -2,8 +2,10 @@ package com.data.safehaven.controllers;
 
 import com.data.safehaven.dtos.PacienteDto;
 import com.data.safehaven.entities.Paciente;
+import com.data.safehaven.exceptions.ErrorMessage;
 import com.data.safehaven.services.PacienteService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 

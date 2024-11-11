@@ -6,6 +6,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CitaMapper {
+
     Cita toEntity(CitaDto citaDto);
     CitaDto toDTO(Cita cita);
 

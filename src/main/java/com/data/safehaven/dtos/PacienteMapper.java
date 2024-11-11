@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.Date;
+
 
 @Mapper(componentModel = "spring")
 public interface PacienteMapper {
@@ -28,6 +30,10 @@ public interface PacienteMapper {
             return rolService.findRoleById(2);
         }
         return rolService.findRoleById(id);
+    }
+    @Named("fechaDeRegistro")
+    default Date SetFechaDeRegistro() {
+        return new Date();
     }
 
 

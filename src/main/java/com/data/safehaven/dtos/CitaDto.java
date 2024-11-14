@@ -1,10 +1,6 @@
 package com.data.safehaven.dtos;
 
 
-import com.data.safehaven.entities.Consultorio;
-import com.data.safehaven.entities.Paciente;
-import com.data.safehaven.entities.Psicologo;
-
 import java.time.LocalTime;
 import java.util.Date;
 

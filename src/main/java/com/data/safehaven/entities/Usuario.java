@@ -25,16 +25,9 @@ public class Usuario {
     private Integer edad;
     private Long telefono;
     private String sexo;
-
     @Temporal(TemporalType.DATE)
-
     private Date fechaDeNacimiento;
-
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idRol", nullable = true)
     private Rol rol;
-
-
 }

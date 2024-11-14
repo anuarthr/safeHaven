@@ -1,8 +1,8 @@
 package com.data.safehaven.controllers;
 
 import com.data.safehaven.dtos.LoginRequestDto;
-import com.data.safehaven.dtos.PacienteDto;
-import com.data.safehaven.services.PacienteService;
+import com.data.safehaven.dtos.UsuarioDto;
+import com.data.safehaven.services.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,19 +13,19 @@ import java.util.Optional;
 @CrossOrigin("http://localhost:5173/")
 public class AuthController {
 
-    private final PacienteService pacienteService;
+    private final UsuarioService usuarioService;
 
-    public AuthController(PacienteService pacienteService) {
-        this.pacienteService = pacienteService;
+    public AuthController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<PacienteDto> login(@RequestBody LoginRequestDto loginRequest) {
-        Optional<PacienteDto> pacienteOpt = pacienteService.findByCorreoElectronico(loginRequest.email());
-        if (pacienteOpt.isPresent()) {
-            PacienteDto paciente = pacienteOpt.get();
-            if (pacienteService.validatePassword(paciente, loginRequest.password())) {
-                return ResponseEntity.ok(paciente);
+    public ResponseEntity<UsuarioDto> login(@RequestBody LoginRequestDto loginRequest) {
+        Optional<UsuarioDto> usuarioOpt = usuarioService.findByCorreoElectronico(loginRequest.email());
+        if (usuarioOpt.isPresent()) {
+            UsuarioDto usuario = usuarioOpt.get();
+            if (usuarioService.validatePassword(usuario, loginRequest.password())) {
+                return ResponseEntity.ok(usuario);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
             }
@@ -34,10 +34,10 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<PacienteDto> obtenerPacienteLogueado(@RequestParam("email") String email) {
-        Optional<PacienteDto> pacienteOpt = pacienteService.findByCorreoElectronico(email);
-        if (pacienteOpt.isPresent()) {
-            return ResponseEntity.ok(pacienteOpt.get());
+    public ResponseEntity<UsuarioDto> obtenerUsuarioLogueado(@RequestParam("email") String email) {
+        Optional<UsuarioDto> usuarioOpt = usuarioService.findByCorreoElectronico(email);
+        if (usuarioOpt.isPresent()) {
+            return ResponseEntity.ok(usuarioOpt.get());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }

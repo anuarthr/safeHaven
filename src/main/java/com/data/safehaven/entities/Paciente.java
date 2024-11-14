@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "pacientes")
 public class Paciente extends Usuario{
 
     private String aseguradora;
